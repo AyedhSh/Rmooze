@@ -10,5 +10,5 @@
   <%= @lesson.description %>
 </p>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+<%= link_to 'Edit', edit_lesson_path(language_id: @lesson.language.id, id:@lesson.id) %> |
 <%= link_to 'Back', lessons_path %>

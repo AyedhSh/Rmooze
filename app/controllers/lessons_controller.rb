@@ -15,17 +15,22 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @language = Language.find(params["language"])
   end
 
   # GET /lessons/1/edit
   def edit
+    @language = Language.find(params[:language_id])
+    @lesson = Lesson.find(params[:id])
   end
 
   # POST /lessons
   # POST /lessons.json
   def create
+    @language = Language.find(params[:lesson][:language_id])
     @lesson = Lesson.new(lesson_params)
-
+    @lesson.language = @language
+     
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
@@ -40,6 +45,8 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   # PATCH/PUT /lessons/1.json
   def update
+        @language = Language.find(params[:lesson][:language_id])
+        @lesson = Lesson.find(params[:id])
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }

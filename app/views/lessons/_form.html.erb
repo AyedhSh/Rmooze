@@ -1,10 +1,10 @@
-<%= form_for(lesson) do |f| %>
-  <% if lesson.errors.any? %>
+<%= form_for(@lesson) do |f| %>
+  <% if @lesson.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
 
       <ul>
-      <% lesson.errors.full_messages.each do |message| %>
+      <% @lesson.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -20,6 +20,7 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
+  <%= f.hidden_field :language_id, :value =>@language.id %>
 
   <div class="actions">
     <%= f.submit %>
